@@ -26,6 +26,27 @@ const Seattle = {
 };
 
 
+const Tokyo = {
+  minCust: 3,
+  maxCust: 24,
+  avgCookie: 1.2,
+  avgCustPerHr: [],
+  cookPurchEachHr: [],
+
+  avgCust: function () {
+    for (let i = 0; i < 14; i++) {
+
+      this.avgCustPerHr[i] = randomValue(this.minCust, this.maxCust);
+
+      this.cookPurchEachHr[i] = Math.floor(this.avgCustPerHr[i] * this.avgCookie);
+
+    }
+  },
+};
+
+
+Tokyo.avgCust();
+
 Seattle.avgCust();
 
 let containerSeattle = document.getElementById('Seattle');
@@ -36,9 +57,9 @@ containerSeattle.appendChild(locationNameSeattle);
 
 locationNameSeattle.textContent = 'Seattle';
 
-let unorderedList = document.createElement('ul');
+let unorderedListSeattle = document.createElement('ul');
 
-containerSeattle.appendChild(unorderedList);
+containerSeattle.appendChild(unorderedListSeattle);
 
 let amPm = '';
 
@@ -49,9 +70,9 @@ let total = 0;
 let clock = 5;
 
 for (let i = 0; i < 15; i++) {
-  
+
   list = document.createElement('li');
-  unorderedList.appendChild(list);
+  unorderedListSeattle.appendChild(list);
   if (clock < 12) {
     clock++;
   } else {
@@ -72,5 +93,48 @@ for (let i = 0; i < 15; i++) {
 }
 
 
+let containerTokyo = document.getElementById('Tokyo');
+
+let locationNameTokyo = document.createElement('h2');
+
+containerTokyo.appendChild(locationNameTokyo);
+
+locationNameTokyo.textContent = 'Tokyo';
+
+let unorderedListTokyo = document.createElement('ul');
+
+containerTokyo.appendChild(unorderedListTokyo);
+
+
+ amPm = '';
+
+ list = '';
+
+ total = 0;
+
+ clock = 5;
+
+
+for (let i = 0; i < 15; i++) {
+  list = document.createElement('li');
+  unorderedListTokyo.appendChild(list);
+  if (clock < 12) {
+    clock++;
+  } else {
+    clock = 1;
+  }
+  if (clock < 12 && i < 6) {
+    amPm = 'am';
+  }
+  if (i >= 6) {
+    amPm = 'pm';
+  }
+  if (i < 14) {
+    list.textContent = `${clock} ${amPm}: ${Tokyo.cookPurchEachHr[i]}`;
+    total = total + Tokyo.cookPurchEachHr[i];
+  } else {
+    list.textContent = `total: ${total}`;
+  }
+}
 
 
