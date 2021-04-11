@@ -64,11 +64,32 @@ const Dubai = {
 };
 
 
+const Paris = {
+  minCust: 20,
+  maxCust: 38,
+  avgCookie: 2.3,
+  avgCustPerHr: [],
+  cookPurchEachHr: [],
+
+  avgCust: function () {
+    for (let i = 0; i < 14; i++) {
+
+      this.avgCustPerHr[i] = randomValue(this.minCust, this.maxCust);
+
+      this.cookPurchEachHr[i] = Math.floor(this.avgCustPerHr[i] * this.avgCookie);
+
+    }
+  },
+};
+
+
 Tokyo.avgCust();
 
 Seattle.avgCust();
 
 Dubai.avgCust();
+
+Paris.avgCust();
 
 let containerSeattle = document.getElementById('Seattle');
 
@@ -199,5 +220,49 @@ for (let i = 0; i < 15; i++) {
     list.textContent = `total: ${total}`;
   }
 }
+
+
+let containerParis = document.getElementById('Paris');
+
+let locationNameParis = document.createElement('h2');
+
+containerParis.appendChild(locationNameParis);
+
+locationNameParis.textContent = 'Paris';
+
+let unorderedListParis = document.createElement('ul');
+
+containerParis.appendChild(unorderedListParis);
+
+amPm = '';
+
+ list = '';
+
+ total = 0;
+
+ clock = 5;
+
+for (let i = 0; i < 15; i++) {
+  list = document.createElement('li');
+  unorderedListParis.appendChild(list);
+  if (clock < 12) {
+    clock++;
+  } else {
+    clock = 1;
+  }
+  if (clock < 12 && i < 6) {
+    amPm = 'am';
+  }
+  if (i >= 6) {
+    amPm = 'pm';
+  }
+  if (i < 14) {
+    list.textContent = `${clock} ${amPm}: ${Paris.cookPurchEachHr[i]}`;
+    total = total + Paris.cookPurchEachHr[i];
+  } else {
+    list.textContent = `total: ${total}`;
+  }
+}
+
 
 
