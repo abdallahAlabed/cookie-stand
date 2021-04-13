@@ -1,10 +1,11 @@
 'use strict';
 
 let operationHour = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
-let sum = [0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+let sum = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 let container = document.getElementById('tableContainer');
 let tabel = document.createElement('table');
 container.appendChild(tabel);
+
 function City(name, minCust, maxCus, avgCookie) {
   this.name = name;
   this.minCust = minCust;
@@ -15,9 +16,11 @@ function City(name, minCust, maxCus, avgCookie) {
   this.sum = 0;
   console.log(this);
 }
+
 function randomValue(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
+
 function heder() {
 
   let tr = document.createElement('tr');
@@ -31,7 +34,8 @@ function heder() {
   tr.appendChild(total);
   total.textContent = 'total';
 }
-function footr() { 
+
+function footr() {
   let tr = document.createElement('tr');
   tabel.appendChild(tr);
   let total = document.createElement("th");
@@ -45,17 +49,17 @@ function footr() {
     x += sum[i];
   }
   let td = document.createElement("td");
-    tr.appendChild(td);
-    td.textContent =x;
+  tr.appendChild(td);
+  td.textContent = x;
 }
 City.prototype.avgCust = function () {
   for (let i = 0; i < 14; i++) {
     this.avgCustPerHr[i] = randomValue(this.minCust, this.maxCus);
     this.cookPurchEachHr[i] = Math.floor(this.avgCustPerHr[i] * this.avgCookie);
     this.sum += this.avgCustPerHr[i];
-    sum[i]+=this.avgCustPerHr[i];
+    sum[i] += this.avgCustPerHr[i];
   }
- console.log(sum);
+  console.log(sum);
 }
 City.prototype.render = function () {
   let row = document.createElement('tr');
@@ -69,7 +73,7 @@ City.prototype.render = function () {
     td.textContent = this.avgCustPerHr[i];
   }
   let td = document.createElement("td");
-  row.appendChild(td);  
+  row.appendChild(td);
   td.textContent = this.sum;
 }
 let seattel = new City('seattel', 23, 65, 6.3);
@@ -77,7 +81,10 @@ let Tokyo = new City('Tokyo', 3, 24, 1.2);
 let Dubai = new City('Dubai', 11, 38, 3.7);
 let Paris = new City('Paris', 20, 38, 2.3);
 let Lima = new City('Lima', 2, 16, 4.6);
+
 heder();
+
+
 seattel.avgCust()
 seattel.render();
 Tokyo.avgCust();
@@ -88,4 +95,7 @@ Paris.avgCust();
 Paris.render();
 Lima.avgCust();
 Lima.render();
+
+
+
 footr();
