@@ -10,7 +10,7 @@
  <body>
 
   <!-- <div id="Seattle">
-  </div>
+    </div>
   <div id="Tokyo">
   </div>
   <div id="Dubai">
@@ -45,16 +45,16 @@
         <legend>Add a New Store</legend>
   
         <label for="shopLocation">Shop Location: </label>
-        <input type="text" name="shopLocation">
+        <input type="text" name="shopLocation" required>
   
         <label for="minCust">Minimum Customers per Hour: </label>
-        <input type="number" name="minCust">
+        <input type="number" name="minCust"required>
   
         <label for="maxCust">Maximum Customers per Hour: </label>
-        <input type="number" name="maxCust">
+        <input type="number" name="maxCust" required>
   
         <label for="cookiesPerSale">Cookies per Sale</label>
-        <input type="number" name="cookiesPerSale" step="0.1">
+        <input type="number" name="cookiesPerSale" step="0.1" required>
   
         <button>Add a Store</button>
       </fieldset>
