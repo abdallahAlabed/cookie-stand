@@ -5,6 +5,8 @@ let sum = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0];
 let container = document.getElementById('tableContainer');
 let tabel = document.createElement('table');
 container.appendChild(tabel);
+let cookieShopForm = document.getElementById('add-shop-form');
+
 
 function City(name, minCust, maxCus, avgCookie) {
   this.name = name;
