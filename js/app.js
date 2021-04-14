@@ -27,7 +27,7 @@ function heder() {
   tabel.appendChild(tr);
   let th = document.createElement("th");
     tr.appendChild(th);
-    th.textContent = 'locaton';
+    th.textContent = 'location';
   for (let i = 0; i < operationHour.length; i++) {
     let th = document.createElement("th");
     tr.appendChild(th);
@@ -46,12 +46,12 @@ function footr() {
   total.textContent = 'total';
   let x = 0;
   for (let i = 0; i < sum.length; i++) {
-    let td = document.createElement("td");
+    let td = document.createElement("th");
     tr.appendChild(td);
     td.textContent = sum[i];
     x += sum[i];
   }
-  let td = document.createElement("td");
+  let td = document.createElement("th");
   tr.appendChild(td);
   td.textContent = x;
 }
