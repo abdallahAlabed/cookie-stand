@@ -1,7 +1,7 @@
 'use strict';
 
 let operationHour = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
-let sum = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+let sum = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0];
 let container = document.getElementById('tableContainer');
 let tabel = document.createElement('table');
 container.appendChild(tabel);
@@ -25,6 +25,9 @@ function heder() {
 
   let tr = document.createElement('tr');
   tabel.appendChild(tr);
+  let th = document.createElement("th");
+    tr.appendChild(th);
+    th.textContent = 'locaton';
   for (let i = 0; i < operationHour.length; i++) {
     let th = document.createElement("th");
     tr.appendChild(th);
@@ -52,8 +55,23 @@ function footr() {
   tr.appendChild(td);
   td.textContent = x;
 }
+City.prototype.render = function () {
+  let row = document.createElement('tr');
+  tabel.appendChild(row);
+  let storeName = document.createElement('th');
+  row.appendChild(storeName);
+  storeName.textContent = this.name;
+  for (let i = 0; i < this.cookPurchEachHr.length; i++) {
+    let td = document.createElement("td");
+    row.appendChild(td);
+    td.textContent = this.avgCustPerHr[i];
+  }
+  let th = document.createElement("th");
+  row.appendChild(th);
+  th.textContent = this.sum;
+}
 City.prototype.avgCust = function () {
-  for (let i = 0; i < 14; i++) {
+  for (let i = 0; i < operationHour.length; i++) {
     this.avgCustPerHr[i] = randomValue(this.minCust, this.maxCus);
     this.cookPurchEachHr[i] = Math.floor(this.avgCustPerHr[i] * this.avgCookie);
     this.sum += this.avgCustPerHr[i];
@@ -61,21 +79,7 @@ City.prototype.avgCust = function () {
   }
   console.log(sum);
 }
-City.prototype.render = function () {
-  let row = document.createElement('tr');
-  tabel.appendChild(row);
-  let storeName = document.createElement('td');
-  row.appendChild(storeName);
-  storeName.textContent = this.name;
-  for (let i = 0; i < operationHour.length; i++) {
-    let td = document.createElement("td");
-    row.appendChild(td);
-    td.textContent = this.avgCustPerHr[i];
-  }
-  let td = document.createElement("td");
-  row.appendChild(td);
-  td.textContent = this.sum;
-}
+
 let seattel = new City('seattel', 23, 65, 6.3);
 let Tokyo = new City('Tokyo', 3, 24, 1.2);
 let Dubai = new City('Dubai', 11, 38, 3.7);
