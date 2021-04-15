@@ -93,9 +93,7 @@ function addNewCity(event) {
   let newCookiesPerSale = parseInt(event.target.cookiesPerSale.value);
   let x = new City(loction, newMinCust, newMaxCust, newCookiesPerSale);
   tabel.innerHTML = '';
-  heder();
   renderallCitys();
-  footr();
 }
 CityForm.addEventListener('submit', addNewCity);
 let seattel = new City('seattel', 23, 65, 6.3);
