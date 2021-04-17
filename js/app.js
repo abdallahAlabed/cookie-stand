@@ -2,7 +2,7 @@
 
 let operationHour = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
 let oop = [];
-let sum = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+let sum = [];
 let container = document.getElementById('tableContainer');
 let tabel = document.createElement('table');
 container.appendChild(tabel);
@@ -35,6 +35,7 @@ City.prototype.render = function () {
   th.textContent = this.sum;
 }
 City.prototype.avgCust = function () {
+  this.sum=0;
   for (let i = 0; i < operationHour.length; i++) {
     this.avgCustPerHr[i] = randomValue(this.minCust, this.maxCus);
     this.cookPurchEachHr[i] = Math.floor(this.avgCustPerHr[i] * this.avgCookie);
@@ -44,6 +45,7 @@ City.prototype.avgCust = function () {
 }
 function renderallCitys() {
   heder();
+  sum = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
   for (var i in oop) {
     oop[i].avgCust();
     oop[i].render();
@@ -59,6 +61,7 @@ function heder() {
   let th = document.createElement("th");
   tr.appendChild(th);
   th.textContent = 'location';
+
   for (let i = 0; i < operationHour.length; i++) {
     let th = document.createElement("th");
     tr.appendChild(th);
@@ -102,4 +105,3 @@ let Dubai = new City('Dubai', 11, 38, 3.7);
 let Paris = new City('Paris', 20, 38, 2.3);
 let Lima = new City('Lima', 2, 16, 4.6);
 renderallCitys();
-console.log(oop)
