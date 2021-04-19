@@ -1,334 +1,107 @@
 'use strict';
 
 let operationHour = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
+let oop = [];
+let sum = [];
+let container = document.getElementById('tableContainer');
+let tabel = document.createElement('table');
+container.appendChild(tabel);
+let CityForm = document.getElementById('add-shop-form');
 
+
+function City(name, minCust, maxCus, avgCookie) {
+  this.name = name;
+  this.minCust = minCust;
+  this.maxCus = maxCus;
+  this.avgCookie = avgCookie;
+  this.avgCustPerHr = [];
+  this.cookPurchEachHr = [];
+  this.sum = 0;
+  oop.push(this);
+}
+City.prototype.render = function () {
+  let row = document.createElement('tr');
+  tabel.appendChild(row);
+  let storeName = document.createElement('th');
+  row.appendChild(storeName);
+  storeName.textContent = this.name;
+  for (let i = 0; i < this.cookPurchEachHr.length; i++) {
+    let td = document.createElement("td");
+    row.appendChild(td);
+    td.textContent = this.avgCustPerHr[i];
+  }
+  let th = document.createElement("th");
+  row.appendChild(th);
+  th.textContent = this.sum;
+}
+City.prototype.avgCust = function () {
+  this.sum=0;
+  for (let i = 0; i < operationHour.length; i++) {
+    this.avgCustPerHr[i] = randomValue(this.minCust, this.maxCus);
+    this.cookPurchEachHr[i] = Math.floor(this.avgCustPerHr[i] * this.avgCookie);
+    this.sum += this.avgCustPerHr[i];
+    sum[i] += this.avgCustPerHr[i];
+  }
+}
+function renderallCitys() {
+  heder();
+  sum = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  for (var i in oop) {
+    oop[i].avgCust();
+    oop[i].render();
+  }
+  footr();
+}
 function randomValue(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
+function heder() {
+  let tr = document.createElement('tr');
+  tabel.appendChild(tr);
+  let th = document.createElement("th");
+  tr.appendChild(th);
+  th.textContent = 'location';
 
-
-const Seattle = {
-  minCust: 23,
-  maxCust: 65,
-  avgCookie: 6.3,
-  avgCustPerHr: [],
-  cookPurchEachHr: [],
-
-  avgCust: function () {
-    for (let i = 0; i < 14; i++) {
-
-      this.avgCustPerHr[i] = randomValue(this.minCust, this.maxCust);
-
-      this.cookPurchEachHr[i] = Math.floor(this.avgCustPerHr[i] * this.avgCookie);
-
-    }
-  },
-};
-
-
-const Tokyo = {
-  minCust: 3,
-  maxCust: 24,
-  avgCookie: 1.2,
-  avgCustPerHr: [],
-  cookPurchEachHr: [],
-
-  avgCust: function () {
-    for (let i = 0; i < 14; i++) {
-
-      this.avgCustPerHr[i] = randomValue(this.minCust, this.maxCust);
-
-      this.cookPurchEachHr[i] = Math.floor(this.avgCustPerHr[i] * this.avgCookie);
-
-    }
-  },
-};
-
-
-const Dubai = {
-  minCust: 11,
-  maxCust: 38,
-  avgCookie: 3.7,
-  avgCustPerHr: [],
-  cookPurchEachHr: [],
-
-  avgCust: function () {
-    for (let i = 0; i < 14; i++) {
-
-      this.avgCustPerHr[i] = randomValue(this.minCust, this.maxCust);
-
-      this.cookPurchEachHr[i] = Math.floor(this.avgCustPerHr[i] * this.avgCookie);
-
-    }
-  },
-};
-
-
-const Paris = {
-  minCust: 20,
-  maxCust: 38,
-  avgCookie: 2.3,
-  avgCustPerHr: [],
-  cookPurchEachHr: [],
-
-  avgCust: function () {
-    for (let i = 0; i < 14; i++) {
-
-      this.avgCustPerHr[i] = randomValue(this.minCust, this.maxCust);
-
-      this.cookPurchEachHr[i] = Math.floor(this.avgCustPerHr[i] * this.avgCookie);
-
-    }
-  },
-};
-
-
-const Lima = {
-  minCust: 2,
-  maxCust: 16,
-  avgCookie: 4.6,
-  avgCustPerHr: [],
-  cookPurchEachHr: [],
-
-  avgCust: function () {
-    for (let i = 0; i < 14; i++) {
-
-      this.avgCustPerHr[i] = randomValue(this.minCust, this.maxCust);
-
-      this.cookPurchEachHr[i] = Math.floor(this.avgCustPerHr[i] * this.avgCookie);
-
-    }
-  },
-};
-
-
-
-
-
-
-Tokyo.avgCust();
-
-Seattle.avgCust();
-
-Dubai.avgCust();
-
-Paris.avgCust();
-
-Lima.avgCust();
-
-
-let containerSeattle = document.getElementById('Seattle');
-
-let locationNameSeattle = document.createElement('h2');
-
-containerSeattle.appendChild(locationNameSeattle);
-
-locationNameSeattle.textContent = 'Seattle';
-
-let unorderedListSeattle = document.createElement('ul');
-
-containerSeattle.appendChild(unorderedListSeattle);
-
-let amPm = '';
-
-let list = '';
-
-let total = 0;
-
-let clock = 5;
-
-for (let i = 0; i < 15; i++) {
-
-  list = document.createElement('li');
-  unorderedListSeattle.appendChild(list);
-  if (clock < 12) {
-    clock++;
-  } else {
-    clock = 1;
+  for (let i = 0; i < operationHour.length; i++) {
+    let th = document.createElement("th");
+    tr.appendChild(th);
+    th.textContent = operationHour[i];
   }
-  if (clock < 12 && i < 6) {
-    amPm = 'am';
-  }
-  if (i >= 6) {
-    amPm = 'pm';
-  }
-  if (i < 14) {
-    list.textContent = `${clock} ${amPm}: ${Seattle.cookPurchEachHr[i]}`;
-    total = total + Seattle.cookPurchEachHr[i];
-  } else {
-    list.textContent = `total: ${total}`;
-  }
+  let total = document.createElement("th");
+  tr.appendChild(total);
+  total.textContent = 'total';
 }
-
-
-let containerTokyo = document.getElementById('Tokyo');
-
-let locationNameTokyo = document.createElement('h2');
-
-containerTokyo.appendChild(locationNameTokyo);
-
-locationNameTokyo.textContent = 'Tokyo';
-
-let unorderedListTokyo = document.createElement('ul');
-
-containerTokyo.appendChild(unorderedListTokyo);
-
-
- amPm = '';
-
- list = '';
-
- total = 0;
-
- clock = 5;
-
-
-for (let i = 0; i < 15; i++) {
-  list = document.createElement('li');
-  unorderedListTokyo.appendChild(list);
-  if (clock < 12) {
-    clock++;
-  } else {
-    clock = 1;
+function footr() {
+  let tr = document.createElement('tr');
+  tabel.appendChild(tr);
+  let total = document.createElement("th");
+  tr.appendChild(total);
+  total.textContent = 'total';
+  let x = 0;
+  for (let i = 0; i < sum.length; i++) {
+    let td = document.createElement("th");
+    tr.appendChild(td);
+    td.textContent = sum[i];
+    x += sum[i];
   }
-  if (clock < 12 && i < 6) {
-    amPm = 'am';
-  }
-  if (i >= 6) {
-    amPm = 'pm';
-  }
-  if (i < 14) {
-    list.textContent = `${clock} ${amPm}: ${Tokyo.cookPurchEachHr[i]}`;
-    total = total + Tokyo.cookPurchEachHr[i];
-  } else {
-    list.textContent = `total: ${total}`;
-  }
+  let td = document.createElement("th");
+  tr.appendChild(td);
+  td.textContent = x;
 }
-
-let containerDubai = document.getElementById('Dubai');
-
-let locationNameDubai = document.createElement('h2');
-
-containerDubai.appendChild(locationNameDubai);
-
-locationNameDubai.textContent = 'Dubai';
-
-let unorderedListDubai = document.createElement('ul');
-
-containerDubai.appendChild(unorderedListDubai);
-
-amPm = '';
-
- list = '';
-
- total = 0;
-
- clock = 5;
-
-for (let i = 0; i < 15; i++) {
-  list = document.createElement('li');
-  unorderedListDubai.appendChild(list);
-  if (clock < 12) {
-    clock++;
-  } else {
-    clock = 1;
-  }
-  if (clock < 12 && i < 6) {
-    amPm = 'am';
-  }
-  if (i >= 6) {
-    amPm = 'pm';
-  }
-  if (i < 14) {
-    list.textContent = `${clock} ${amPm}: ${Dubai.cookPurchEachHr[i]}`;
-    total = total + Dubai.cookPurchEachHr[i];
-  } else {
-    list.textContent = `total: ${total}`;
-  }
+function addNewCity(event) {
+  event.preventDefault();
+  let loction = event.target.shopLocation.value;
+  let newMinCust = parseInt(event.target.minCust.value);
+  let newMaxCust = parseInt(event.target.maxCust.value);
+  let newCookiesPerSale = parseInt(event.target.cookiesPerSale.value);
+  let x = new City(loction, newMinCust, newMaxCust, newCookiesPerSale);
+  tabel.innerHTML = '';
+  renderallCitys();
 }
-
-
-let containerParis = document.getElementById('Paris');
-
-let locationNameParis = document.createElement('h2');
-
-containerParis.appendChild(locationNameParis);
-
-locationNameParis.textContent = 'Paris';
-
-let unorderedListParis = document.createElement('ul');
-
-containerParis.appendChild(unorderedListParis);
-
-amPm = '';
-
- list = '';
-
- total = 0;
-
- clock = 5;
-
-for (let i = 0; i < 15; i++) {
-  list = document.createElement('li');
-  unorderedListParis.appendChild(list);
-  if (clock < 12) {
-    clock++;
-  } else {
-    clock = 1;
-  }
-  if (clock < 12 && i < 6) {
-    amPm = 'am';
-  }
-  if (i >= 6) {
-    amPm = 'pm';
-  }
-  if (i < 14) {
-    list.textContent = `${clock} ${amPm}: ${Paris.cookPurchEachHr[i]}`;
-    total = total + Paris.cookPurchEachHr[i];
-  } else {
-    list.textContent = `total: ${total}`;
-  }
-}
-
-
-let containerLima = document.getElementById('Lima');
-
-let locationNameLima = document.createElement('h2');
-
-containerLima.appendChild(locationNameLima);
-
-locationNameLima.textContent = 'Lima';
-
-let unorderedListLima = document.createElement('ul');
-
-containerLima.appendChild(unorderedListLima);
-
-amPm = '';
-
- list = '';
-
- total = 0;
-
- clock = 5;
-for (let i = 0; i < 15; i++) {
-  list = document.createElement('li');
-  unorderedListLima.appendChild(list);
-  if (clock < 12) {
-    clock++;
-  } else {
-    clock = 1;
-  }
-  if (clock < 12 && i < 6) {
-    amPm = 'am';
-  }
-  if (i >= 6) {
-    amPm = 'pm';
-  }
-  if (i < 14) {
-    list.textContent = `${clock} ${amPm}: ${Lima.cookPurchEachHr[i]}`;
-    total = total + Lima.cookPurchEachHr[i];
-  } else {
-    list.textContent = `total: ${total}`;
-  }
-}
-
+CityForm.addEventListener('submit', addNewCity);
+let seattel = new City('seattel', 23, 65, 6.3);
+let Tokyo = new City('Tokyo', 3, 24, 1.2);
+let Dubai = new City('Dubai', 11, 38, 3.7);
+let Paris = new City('Paris', 20, 38, 2.3);
+let Lima = new City('Lima', 2, 16, 4.6);
+renderallCitys();

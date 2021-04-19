@@ -1,13 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="CSS/styl.css">
+
+  <title>Salmon Cookie Store</title>
 </head>
-<body>
+ <body>
+
+  <!-- <div id="Seattle">
+    </div>
+  <div id="Tokyo">
+  </div>
+  <div id="Dubai">
+  </div>
+  <div id="Paris">
+  </div>
+  <div id="Lima">
+  </div>
+   -->
+  <!-- </div> -->
+  <!-- <div id="tableContainer">
+  </div>
+   -->
+
+  <header>
+    <div>
+      <div>
+        <h1>Salmon Cookies </h1>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="./index.html">Home</a></li>
+          <li><a href="./sales.html">Sales</a></li>
+          <li><a href="./shop.html">Shop</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="form">
+    <form id="add-shop-form">
+      <fieldset>
+        <legend>Add a New Store</legend>
   
+        <label for="shopLocation">Shop Location: </label>
+        <input type="text" name="shopLocation" required>
+  
+        <label for="minCust">Minimum Customers per Hour: </label>
+        <input type="number" name="minCust"required>
+  
+        <label for="maxCust">Maximum Customers per Hour: </label>
+        <input type="number" name="maxCust" required>
+  
+        <label for="cookiesPerSale">Cookies per Sale</label>
+        <input type="number" name="cookiesPerSale" step="0.1" required>
+  
+        <button>Add a Store</button>
+      </fieldset>
+    </form>
+  </div>
+  <section>
+    <h3>Cookies Sold</h3>
+    <table id="tableContainer"></table>
+  </section>
+  <footer class="footer">
+  
+    <label for="">
+      abdallah_alabed@LTUC.com ---->
+    </label>
+    <label for="">
+      +962786005902
+    </label>
+    <label for="">
+      seattel ---------->
+    </label>
+    <div id="footer">
+      <label for="">
+        seattel
+      </label>  <label for="">
+        Tokyo
+      </label>  <label for="">
+        Dubai
+      </label>  <label for="">
+        Lima
+      </label>  <label for="">
+        Paris
+      </label>
+    </div>
+  </footer>
   <script src="js/app.js"></script>
-</body>
+  </body>
+
 </html>
